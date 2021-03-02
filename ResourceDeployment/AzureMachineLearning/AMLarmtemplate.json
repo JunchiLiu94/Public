@@ -9,29 +9,6 @@
   },
   "resources": [
       {
-    "type": "Microsoft.MachineLearningServices/workspaces",
-    "name": "amltempworkspace832",
-    "apiVersion": "2020-09-01-preview",
-    "dependsOn" :[
-      "[variables('storageAccount')]",
-      "[variables('keyVault')]",
-      "[variables('applicationInsights')]"
-    ],
-    "identity": {
-      "type": "SystemAssigned"
-    },
-    "location": "australiaeast",
-    "tags": {"Business":"Sales", "CostCenter":"2113"},
-    "sku": {
-      "name": "Enterprise",
-      "tier": "Enterprise"
-    },
-    "properties": {
-      "description": "Use case 1",
-      "friendlyName": "Regression"
-    }
-      },
-      {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2020-08-01-preview",
       "name": "amltempstorage832",
@@ -78,6 +55,29 @@
         "properties": {
             "Application_Type": "web"
           }
+      },
+      {
+    "type": "Microsoft.MachineLearningServices/workspaces",
+    "name": "amltempworkspace832",
+    "apiVersion": "2020-09-01-preview",
+    "dependsOn" :[
+      "[variables('storageAccount')]",
+      "[variables('keyVault')]",
+      "[variables('applicationInsights')]"
+    ],
+    "identity": {
+      "type": "SystemAssigned"
+    },
+    "location": "australiaeast",
+    "tags": {"Business":"Sales", "CostCenter":"2113"},
+    "sku": {
+      "name": "Enterprise",
+      "tier": "Enterprise"
+    },
+    "properties": {
+      "description": "Use case 1",
+      "friendlyName": "Regression"
+    }
       }
   ]
 }
