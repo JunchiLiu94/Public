@@ -2,13 +2,21 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "variables":{
-    "tenantId" : "[subscription().tenantId]"
+    "tenantId" : "[subscription().tenantId]",
+    "storageAccount" : "[resourceId('Microsoft.Storage/storageAccounts','amltempstorage832')]",
+    "keyVault" : "[resourceId('Microsoft.KeyVault/vaults','amlkeyvault832')]" ,
+    "applicationInsights" : "[resourceId('Microsoft.Insights/components','amlappinsights832')]"
   },
   "resources": [
       {
     "type": "Microsoft.MachineLearningServices/workspaces",
     "name": "amltempworkspace832",
     "apiVersion": "2020-09-01-preview",
+    "dependsOn" :[
+      "[variables('storageAccount')]",
+      "[variables('keyVault')]",
+      "[variables('applicationInsights')]"
+    ],
     "identity": {
       "type": "SystemAssigned"
     },
@@ -60,6 +68,16 @@
             },
             "accessPolicies": []
         }
+      },
+      {
+        "type": "Microsoft.Insights/components",
+        "apiVersion": "2018-05-01-preview",
+        "name": "amlappinsights832",
+        "location": "australiaeast",
+        "kind": "web",
+        "properties": {
+            "Application_Type": "web"
+          }
       }
   ]
 }
