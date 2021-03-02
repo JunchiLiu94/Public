@@ -58,7 +58,7 @@
       {
         "type": "Microsoft.KeyVault/vaults",
         "apiVersion": "2019-09-01",
-        "name": "amlkeyvault832",
+        "name": "amlkeyvault833",
         "location": "australiaeast",
         "properties": {
             "tenantId": "[variables('tenantId')]",
