@@ -2,11 +2,29 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-      "<first-parameter-name>": {
-        "value": "<first-value>"
+      "resourcegroupname": {
+        "value": "AMLsandbox"
       },
-      "<second-parameter-name>": {
-        "value": "<second-value>"
+      "storageAccountName" : {
+        "value" : "amltempstorage832"
+      },
+      "keyVaultName" : {
+        "value" : "amlkeyvault836"
+      },
+      "applicationInsightsName" : {
+        "value" : "amlappinsights832"
+      },
+      "workspaceName" : {
+        "value" : "amltempworkspace832"
+      },
+      "location" : {
+        "value" : "australiaeast"
+      },
+      "storageAccountType" : {
+        "value" : "Standard_LRS"
+      },
+      "workspaceSKU" : {
+        "value" : "Enterprise"
       }
     }
   }
