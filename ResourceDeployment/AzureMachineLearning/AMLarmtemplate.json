@@ -9,7 +9,7 @@
     "location": "Australia East",
     "tags": {"Business":"Sales", "CostCenter":"2113"},
     "sku": {
-      "name": "randomname",
+      "name": "randomname12",
       "tier": "Enterprise"
     },
     "properties": {
