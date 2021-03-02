@@ -22,9 +22,3 @@
 }
   ]
 }
-
-"identity": {
-                "principalId": "1f18dba6-1125-45b0-93c4-218007c40620",
-                "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
-                "type": "SystemAssigned"
-            },
