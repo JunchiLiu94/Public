@@ -19,6 +19,30 @@
       "description": "Use case 1",
       "friendlyName": "Regression"
     }
+      },
+      {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2020-08-01-preview",
+      "name": "amltempstorage832",
+      "location": "australiaeast",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "supportsHttpsTrafficOnly": true,
+        "encryption" : {
+          "services" :{
+            "blob" : {
+              "enabled" : true
+            },
+            "file" : {
+              "enabled" : true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        }
+      }
       }
   ]
 }
