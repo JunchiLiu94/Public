@@ -1,0 +1,112 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+      "resourcegroupname" : {
+        "type": "string"
+      },
+      "storageAccountName" : {
+        "type" : "string"
+      },
+      "keyVaultName" : {
+        "type" : "string"
+      },
+      "applicationInsightsName" : {
+        "type" : "string"
+      },
+      "workspaceName" : {
+        "type" : "string"
+      },
+      "location" : {
+        "type" : "string"
+      },
+      "storageAccountType" : {
+        "type" : "string"
+      },
+      "workspaceSKU" : {
+        "type" : "string"
+      }
+  },
+  "variables":{
+    "tenantId" : "[subscription().tenantId]",
+    "storageAccount" : "[resourceId(parameters('resourcegroupname'), 'Microsoft.Storage/storageAccounts',parameters('storageAccountName'))]",
+    "keyVault" : "[resourceId(parameters('resourcegroupname'), 'Microsoft.KeyVault/vaults',parameters('keyVaultName'))]" ,
+    "applicationInsights" : "[resourceId(parameters('resourcegroupname'), 'Microsoft.Insights/components',parameters('applicationInsightsName'))]"
+  },
+  "resources": [
+      {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2020-08-01-preview",
+      "name": "[parameters('storageAccountName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "[parameters('storageAccountType')]"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "supportsHttpsTrafficOnly": true,
+        "encryption" : {
+          "services" :{
+            "blob" : {
+              "enabled" : true
+            },
+            "file" : {
+              "enabled" : true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        }
+      }
+      },
+      {
+        "type": "Microsoft.KeyVault/vaults",
+        "apiVersion": "2019-09-01",
+        "name": "[parameters('keyVaultName')]",
+        "location": "[parameters('location')]",
+        "properties": {
+            "tenantId": "[variables('tenantId')]",
+            "sku": {
+                "name": "standard",
+                "family": "A"
+            },
+            "accessPolicies": []
+        }
+      },
+      {
+        "type": "Microsoft.Insights/components",
+        "apiVersion": "2018-05-01-preview",
+        "name": "[parameters('applicationInsightsName')]",
+        "location": "[parameters('location')]",
+        "kind": "web",
+        "properties": {
+            "Application_Type": "web"
+          }
+      },
+      {
+    "type": "Microsoft.MachineLearningServices/workspaces",
+    "name": "[parameters('workspaceName')]",
+    "apiVersion": "2020-09-01-preview",
+    "dependsOn" :[
+      "[variables('storageAccount')]",
+      "[variables('keyVault')]",
+      "[variables('applicationInsights')]"
+    ],
+    "identity": {
+      "type": "systemAssigned"
+    },
+    "location": "[parameters('location')]",
+    "tags": {"Business":"Sales", "CostCenter":"2113"},
+    "sku": {
+      "name": "[parameters('workspaceSKU')]",
+      "tier": "[parameters('workspaceSKU')]"
+    },
+    "properties": {
+      "description": "Use case 1",
+      "friendlyName": "Regression", 
+      "storageAccount" : "[variables('storageAccount')]",
+      "keyVault" : "[variables('keyVault')]",
+      "applicationInsights" : "[variables('applicationInsights')]"
+    }
+      }
+  ]
+}
