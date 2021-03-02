@@ -3,6 +3,9 @@
   "contentVersion": "1.0.0.0",
   "variables":{
     "tenantId" : "[subscription().tenantId]",
+    "storageAccount" : "[resourceId('AMLsandbox', 'Microsoft.Storage/storageAccounts','amltempstorage832')]",
+    "keyVault" : "[resourceId('AMLsandbox', 'Microsoft.KeyVault/vaults','amlkeyvault833')]" ,
+    "applicationInsights" : "[resourceId('AMLsandbox', 'Microsoft.Insights/components','amlappinsights832')]"
   },
   "resources": [
       {
@@ -57,6 +60,11 @@
     "type": "Microsoft.MachineLearningServices/workspaces",
     "name": "amltempworkspace832",
     "apiVersion": "2020-09-01-preview",
+    "dependsOn" :[
+      "[variables('storageAccount')]",
+      "[variables('keyVault')]",
+      "[variables('applicationInsights')]"
+    ],
     "identity": {
       "type": "SystemAssigned"
     },
