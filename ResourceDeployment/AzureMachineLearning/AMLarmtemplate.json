@@ -1,0 +1,47 @@
+{
+    "name": "AMLtempworkspace832",
+    "type": "Microsoft.MachineLearningServices/workspaces",
+    "apiVersion": "2020-08-01",
+    "identity": {
+      "type": "string",
+      "userAssignedIdentities": {}
+    },
+    "location": "Australia East",
+    "tags": {"Business":"Sales", "CostCenter":"2113"},
+    "sku": {
+      "name": "randomname",
+      "tier": "Enterprise"
+    },
+    "properties": {
+      "description": "Use case 1",
+      "friendlyName": "Regression",
+      "keyVault": "",
+      "applicationInsights": "",
+      "containerRegistry": "",
+      "storageAccount": "",
+      "discoveryUrl": "",
+      "encryption": {
+        "status": "Disabled",
+        "keyVaultProperties": {
+          "keyVaultArmId": "",
+          "keyIdentifier": "",
+          "identityClientId": ""
+        }
+      },
+      "hbiWorkspace": "",
+      "imageBuildCompute": "",
+      "allowPublicAccessWhenBehindVnet": "",
+      "sharedPrivateLinkResources": [
+        {
+          "name": "",
+          "properties": {
+            "privateLinkResourceId": "",
+            "groupId": "",
+            "requestMessage": "",
+            "status": ""
+          }
+        }
+      ]
+    },
+    "resources": []
+  }
