@@ -1,6 +1,9 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
+  "variables":{
+    "tenantId" : "[subscription().tenantId]"
+  },
   "resources": [
       {
     "type": "Microsoft.MachineLearningServices/workspaces",
@@ -43,6 +46,20 @@
           "keySource": "Microsoft.Storage"
         }
       }
+      },
+      {
+        "type": "Microsoft.KeyVault/vaults",
+        "apiVersion": "2019-09-01",
+        "name": "amlkeyvault832",
+        "location": "australiaeast",
+        "properties": {
+            "tenantId": "[variables('tenantId')]",
+            "sku": {
+                "name": "standard",
+                "family": "A"
+            },
+            "accessPolicies": []
+        }
       }
   ]
 }
