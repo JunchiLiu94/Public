@@ -1,15 +1,15 @@
 {
-    "name": "amltempworkspace832",
     "type": "Microsoft.MachineLearningServices/workspaces",
+    "name": "amltempworkspace832",
     "apiVersion": "2020-08-01",
-    "location": "Australia East",
+    "location": "australiaeast",
     "tags": {"Business":"Sales", "CostCenter":"2113"},
     "sku": {
-      "name": "randomname12",
+      "name": "Enterprise",
       "tier": "Enterprise"
     },
     "properties": {
       "description": "Use case 1",
       "friendlyName": "Regression"
     }
-  }
+}
