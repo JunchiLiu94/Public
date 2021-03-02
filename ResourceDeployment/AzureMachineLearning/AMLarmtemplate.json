@@ -4,7 +4,7 @@
   "variables":{
     "tenantId" : "[subscription().tenantId]",
     "storageAccount" : "[resourceId('Microsoft.Storage/storageAccounts','amltempstorage832')]",
-    "keyVault" : "[resourceId('Microsoft.KeyVault/vaults','amlkeyvault832')]" ,
+    "keyVault" : "[resourceId('Microsoft.KeyVault/vaults','amlkeyvault833')]" ,
     "applicationInsights" : "[resourceId('Microsoft.Insights/components','amlappinsights832')]"
   },
   "resources": [
