@@ -127,8 +127,7 @@
       "keyVault" : "[variables('keyVault')]",
       "applicationInsights" : "[variables('applicationInsights')]",
       "containerRegistry" : "[variables('containerRegistry')]",
-      "hbiWorkspace" : false,
-      "adbWorkspace" : ""
+      "hbiWorkspace" : false
     }
       }
   ]
