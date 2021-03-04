@@ -122,12 +122,13 @@
       "tier": "[parameters('workspaceSKU')]"
     },
     "properties": {
-      "description": "Use case 1",
-      "friendlyName": "Regression", 
+      "description": "Azure Machine Learning Workspace",
       "storageAccount" : "[variables('storageAccount')]",
       "keyVault" : "[variables('keyVault')]",
       "applicationInsights" : "[variables('applicationInsights')]",
-      "containerRegistry" : "[variables('containerRegistry')]"
+      "containerRegistry" : "[variables('containerRegistry')]",
+      "hbiWorkspace" : false,
+      "adbWorkspace" : ""
     }
       }
   ]
