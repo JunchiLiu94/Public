@@ -126,7 +126,8 @@
       "friendlyName": "Regression", 
       "storageAccount" : "[variables('storageAccount')]",
       "keyVault" : "[variables('keyVault')]",
-      "applicationInsights" : "[variables('applicationInsights')]"
+      "applicationInsights" : "[variables('applicationInsights')]",
+      "containerRegistry" : "[variables('containerRegistry')]"
     }
       }
   ]
