@@ -8,9 +8,6 @@
       "storageAccountName" : {
         "type" : "string"
       },
-      "containerName" : {
-        "type" : "string"
-      },
       "keyVaultName" : {
         "type" : "string"
       },
@@ -28,13 +25,14 @@
       },
       "workspaceSKU" : {
         "type" : "string"
-      },            
-      "datastoreCount" : {
-        "type" : "int"
       },
-      "datasetCount" : {
-        "type" : "int"
+      "containerRegistryName" : {
+        "type" : "string"
+      },
+      "containerRegistrySku" : {
+        "type" : "string"
       }
+      
   },
   "variables":{
     "tenantId" : "[subscription().tenantId]",
@@ -92,6 +90,18 @@
           }
       },
       {
+      "type": "Microsoft.ContainerRegistry/registries",
+      "apiVersion": "2019-12-01-preview",
+      "name": "[parameters('containerRegistryName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "[parameters('containerRegistrySku')]"
+      },
+      "properties": {
+        "adminUserEnabled": true
+      }
+    },
+      {
     "type": "Microsoft.MachineLearningServices/workspaces",
     "name": "[parameters('workspaceName')]",
     "apiVersion": "2020-09-01-preview",
@@ -116,53 +126,6 @@
       "keyVault" : "[variables('keyVault')]",
       "applicationInsights" : "[variables('applicationInsights')]"
     }
-      },
-      {
-			"type": "Microsoft.MachineLearningServices/workspaces/datastores",
-			"name": "[concat(parameters('workspaceName'), '/', 'datastore', copyIndex())]",
-			"apiVersion": "2020-05-01-preview",
-			"location": "[parameters('location')]",
-			"dependsOn": [
-				"[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaceName'))]",
-				"[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
-			],
-			"copy": {
-				"name": "datastoreCopy",
-				"count": "[int(parameters('datastoreCount'))]"
-			},
-			"properties": {
-				"DataStoreType": "blob",
-				"AccountName": "[parameters('storageAccountName')]",
-				"ContainerName": "[parameters('containerName')]",
-				"AccountKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2019-04-01').keys[0].value]"
-			}
-		},
-    {
-			"type": "Microsoft.MachineLearningServices/workspaces/datasets",
-			"name": "[concat(parameters('workspaceName'), '/', 'dataset', copyIndex())]",
-			"apiVersion": "2020-05-01-preview",
-			"location": "[parameters('location')]",
-			"dependsOn": [
-				"[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaceName'))]"
-			],
-			"copy": {
-				"name": "datasetCopy",
-				"count": "[int(parameters('datasetCount'))]"
-			},
-			"properties": {
-				"DatasetType": "file",
-				"Parameters": {
-					"Path": {
-						"DataPath": {
-							"RelativePath": "/",
-							"DatastoreName": "workspaceblobstore"
-						}
-					}
-				},
-				"Registration": {
-					"Description": "Multiple datasets"
-				}
-			}
-		}
+      }
   ]
 }

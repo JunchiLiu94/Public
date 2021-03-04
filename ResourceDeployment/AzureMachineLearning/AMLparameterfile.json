@@ -8,9 +8,6 @@
       "storageAccountName" : {
         "value" : "amltempstorage832"
       },
-      "containerName" : {
-        "value" : "amlcontainer"
-      },
       "keyVaultName" : {
         "value" : "amlkeyvault836"
       },
@@ -29,11 +26,11 @@
       "workspaceSKU" : {
         "value" : "Enterprise"
       },
-      "datastoreCount" : {
-        "value" : 2
+      "containerRegistryName" : {
+        "value" : "amlregistr"
       },
-      "datasetCount" : {
-        "value" : 2
+      "containerRegistrySku" : {
+        "value" : "string"
       }
     }
   }
