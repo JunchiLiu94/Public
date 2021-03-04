@@ -38,7 +38,8 @@
     "tenantId" : "[subscription().tenantId]",
     "storageAccount" : "[resourceId(parameters('resourcegroupname'), 'Microsoft.Storage/storageAccounts',parameters('storageAccountName'))]",
     "keyVault" : "[resourceId(parameters('resourcegroupname'), 'Microsoft.KeyVault/vaults',parameters('keyVaultName'))]" ,
-    "applicationInsights" : "[resourceId(parameters('resourcegroupname'), 'Microsoft.Insights/components',parameters('applicationInsightsName'))]"
+    "applicationInsights" : "[resourceId(parameters('resourcegroupname'), 'Microsoft.Insights/components',parameters('applicationInsightsName'))]",
+    "containerRegistry" : "[resourceId(parameters('resourcegroupname'), 'Microsoft.ContainerRegistry/registries',parameters('containerRegistryName'))]"
   },
   "resources": [
       {
@@ -108,7 +109,8 @@
     "dependsOn" :[
       "[variables('storageAccount')]",
       "[variables('keyVault')]",
-      "[variables('applicationInsights')]"
+      "[variables('applicationInsights')]",
+      "[variables('containerRegistry')]"
     ],
     "identity": {
       "type": "systemAssigned"
