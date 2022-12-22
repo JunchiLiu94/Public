@@ -8,7 +8,7 @@ param(
 )
 
 #Set Azure Subscription
-Set-AzContext -Subscription $subscriptionID
+Select-AzSubscription -Subscription $subscriptionID
 
 #Configures Git Repo for Synapse Workspace
 $config = New-AzSynapseGitRepositoryConfig -RepositoryType $repositoryType -AccountName $accountName -RepositoryName $repositoryName -CollaborationBranch $collaborationBranch
