@@ -8,8 +8,8 @@ param(
 )
 
 #Configures Git Repo for Synapse Workspace
+Get-AzContext -ListAvailable
 Set-AzContext -Subscription $subscriptionId
-Write-Host $subscriptionId
 
 try {
     $config = New-AzSynapseGitRepositoryConfig -RepositoryType $repositoryType -AccountName $accountName -RepositoryName $repositoryName -CollaborationBranch $collaborationBranch
