@@ -1,4 +1,5 @@
 param(
+    [string]$subscriptionId,
     [string]$repositoryType,
     [string]$accountName,
     [string]$repositoryName,
@@ -7,5 +8,13 @@ param(
 )
 
 #Configures Git Repo for Synapse Workspace
-$config = New-AzSynapseGitRepositoryConfig -RepositoryType $repositoryType -AccountName $accountName -RepositoryName $repositoryName -CollaborationBranch $collaborationBranch
-Update-AzSynapseWorkspace -Name $synapseWorkspaceName -GitRepository $config
+Select-AzSubscription -SubscriptionId $subscriptionId
+
+try {
+    Update-AzSynapseWorkspace -Name $synapseWorkspaceName -GitRepository $config
+    $config = New-AzSynapseGitRepositoryConfig -RepositoryType $repositoryType -AccountName $accountName -RepositoryName $repositoryName -CollaborationBranch $collaborationBranch
+
+}
+catch {
+    Write-Host Error encountered - $_.Exception
+}
