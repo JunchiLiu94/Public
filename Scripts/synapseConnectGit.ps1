@@ -9,10 +9,11 @@ param(
 
 #Configures Git Repo for Synapse Workspace
 Select-AzSubscription -SubscriptionId $subscriptionId
+Write-Host $subscriptionId
 
 try {
-    Update-AzSynapseWorkspace -Name $synapseWorkspaceName -GitRepository $config
     $config = New-AzSynapseGitRepositoryConfig -RepositoryType $repositoryType -AccountName $accountName -RepositoryName $repositoryName -CollaborationBranch $collaborationBranch
+    Update-AzSynapseWorkspace -Name $synapseWorkspaceName -GitRepository $config
 
 }
 catch {
