@@ -8,6 +8,7 @@ param(
 )
 
 #Configures Git Repo for Synapse Workspace
+Get-AzSubscription
 Set-AzContext -Tenant (Get-AzContext -ListAvailable).Tenant -Subscription $subscriptionId
 
 try {
